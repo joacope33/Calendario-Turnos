@@ -1,0 +1,12 @@
+com\mycompany\calendario\login\Persistencia\exceptions\NonexistentEntityException.class
+com\mycompany\calendario\login\IGU\VentanaPrincipal$3.class
+com\mycompany\calendario\login\Persistencia\exceptions\IllegalOrphanException.class
+com\mycompany\calendario\login\Logica\Usuario.class
+com\mycompany\calendario\login\CalendarioLogin.class
+com\mycompany\calendario\login\IGU\VentanaPrincipal.class
+com\mycompany\calendario\login\IGU\VentanaPrincipal$1.class
+com\mycompany\calendario\login\Logica\Controladora.class
+com\mycompany\calendario\login\Persistencia\UsuarioJpaController.class
+com\mycompany\calendario\login\IGU\VentanaPrincipal$2.class
+com\mycompany\calendario\login\Persistencia\ControladoraPersistencia.class
+com\mycompany\calendario\login\Persistencia\exceptions\PreexistingEntityException.class

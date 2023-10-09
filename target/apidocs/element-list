@@ -1,0 +1,5 @@
+com.mycompany.calendario.login
+com.mycompany.calendario.login.IGU
+com.mycompany.calendario.login.Logica
+com.mycompany.calendario.login.Persistencia
+com.mycompany.calendario.login.Persistencia.exceptions
