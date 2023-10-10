@@ -19,7 +19,7 @@ public class Controladora {
         for(Usuario usu: listaUsuarios){
             if(usu.getNombreUsuario().equals(usuario)){
                 if(usu.getContrasenia().equals(contrasenia)){
-                    mensaje="Usuario y contrasenia correctos. Bienvenidos/a!";
+                    mensaje="Usuario y contrasenia correctos. Bienvenidos/as!";
                 }
                 else{
                     mensaje="Contrasenia Incorrecta";

@@ -1,5 +1,6 @@
 com\mycompany\calendario\login\Persistencia\exceptions\NonexistentEntityException.class
 com\mycompany\calendario\login\IGU\VentanaPrincipal$3.class
+com\mycompany\calendario\login\IGU\VentanaPrincipal$4.class
 com\mycompany\calendario\login\Persistencia\exceptions\IllegalOrphanException.class
 com\mycompany\calendario\login\Logica\Usuario.class
 com\mycompany\calendario\login\CalendarioLogin.class

@@ -9,6 +9,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         control = new Controladora();
+        txtContrasenia.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +84,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
         txtContrasenia.setText("jPasswordField1");
+        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseniaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,6 +180,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtMensaje.setText(mensaje);
         
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseniaActionPerformed
 
  
 
