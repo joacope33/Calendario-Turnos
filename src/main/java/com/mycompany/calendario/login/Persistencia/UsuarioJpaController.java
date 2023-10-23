@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.calendario.login.Persistencia;
 
 import com.mycompany.calendario.login.Logica.Usuario;
@@ -13,21 +16,23 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+/**
+ *
+ * @author joaco
+ */
 public class UsuarioJpaController implements Serializable {
 
     public UsuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
-    
+
     public UsuarioJpaController() {
         emf= Persistence.createEntityManagerFactory("loginPU");
     }
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    
 
     public void create(Usuario usuario) {
         EntityManager em = null;

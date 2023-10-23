@@ -9,7 +9,7 @@ public class Controladora {
     ControladoraPersistencia controlPersis;// = new ControladoraPersistencia();
     
     public Controladora(){
-        controlPersis= new ControladoraPersistencia();
+        controlPersis= controlPersis.getInstancia();
     }
     public String validarUsuario(String usuario, String contrasenia) {
          String mensaje="";
@@ -32,5 +32,40 @@ public class Controladora {
         }
         return mensaje;
     }
-    
-}
+    public String validarPaciente(String nombre, long DNI) {
+         String mensaje="";
+        List<Paciente> listaPaciente = controlPersis.traerPacientes();
+        
+       
+        for(Paciente pac: listaPaciente){
+            if(pac.getNombre().equals(nombre)){
+                if(pac.getDNI()==(DNI)){
+                    mensaje="Paciente encontrado";
+                }
+                else{
+                    mensaje="Paciente Incorrecta";
+                }
+                
+            }
+            else{
+                mensaje="Paciente no encontrado";
+            }
+        }
+        return mensaje;
+    }
+    public void crearTurno(Paciente paci){
+        controlPersis.crearTurno(paci);
+    }    
+    public int numeroId(){
+        return controlPersis.numeroId();
+    }
+    public void eliminarTurno(int id){
+        controlPersis.eliminarTurno(id);
+    }
+    public void editarTurno(Paciente paci){
+        controlPersis.editarTurno(paci);
+    }
+    public Paciente findTurno(int id){
+        return controlPersis.findTurno(id);
+    }
+}   

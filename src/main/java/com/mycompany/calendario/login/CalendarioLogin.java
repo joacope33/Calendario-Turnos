@@ -1,14 +1,17 @@
 
 package com.mycompany.calendario.login;
 
-import com.mycompany.calendario.login.IGU.VentanaPrincipal;
+import com.mycompany.calendario.login.IGU.LoginVentana;
+
 
 
 public class CalendarioLogin {
 
     public static void main(String[] args) {
-        VentanaPrincipal princ = new VentanaPrincipal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
-    }
+        LoginVentana loguearse = LoginVentana.getInstancia();
+        loguearse.setVisible(true);
+        loguearse.setLocationRelativeTo(null);
+       
+            
+        }
 }
