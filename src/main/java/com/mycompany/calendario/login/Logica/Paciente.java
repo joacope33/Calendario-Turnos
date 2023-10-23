@@ -4,16 +4,21 @@ package com.mycompany.calendario.login.Logica;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 
 @Entity
+@Table(name = "paciente", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"turno", "Hora"})
+})
 public class Paciente implements Serializable {
-    // Obtener la fecha y hora actual en la zona horaria local
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +27,9 @@ public class Paciente implements Serializable {
     private String nombre;
     private String  obraSocial;
     private long numeroCelular;
+    @Column(name = "turno")
     private Date turno;
+    @Column(name = "hora")
     private Time hora; 
 
     public Time getHora() {
