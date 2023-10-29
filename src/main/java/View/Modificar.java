@@ -4,8 +4,8 @@
  */
 package View;
 
+import Controller.Controladora;
 import Model.Paciente;
-import Persistencia.ControladoraPersistencia;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class Modificar extends javax.swing.JPanel {
        
- ControladoraPersistencia control;
+ Controladora control;
     TableRowSorter<DefaultTableModel> sorter;
 
     public  Modificar() {
@@ -36,7 +36,7 @@ public class Modificar extends javax.swing.JPanel {
      */
     
     private void setTableSort(){
-        control = ControladoraPersistencia.getInstancia();
+        control = new Controladora();
         DefaultTableModel dtTable=new DefaultTableModel();
         String [] title= new String[]{"ID:","Nombre:","DNI","Telefono:","Obra social:","Dia del turno","Horario"};
         List<Paciente> listaPaciente = control.traerPacientes();

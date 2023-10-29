@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -316,8 +317,22 @@ public class Alta extends javax.swing.JPanel {
                     control.crearTurno(paci);
                     JOptionPane.showMessageDialog(null, "Su turno ha sido Creado con Exito.", "Turno Creado", JOptionPane.INFORMATION_MESSAGE);
                 } else {
+                    List <Paciente> listapaciente = control.traerPacientes();
+                    boolean noFindTurn=false;
+                    SimpleDateFormat fechahora= new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    String fh1 = null;
+                    String fh2 = formatoFecha.format(paci.getTurno())+" "+formatoHora.format(paci.getHora());
+                    for ( Paciente a:listapaciente){
+                        fh1= formatoFecha.format(a.getTurno())+" "+formatoHora.format(a.getHora());
+                        if(fh1.compareTo(fh2)==0){
+                            noFindTurn=true;
+                        }
+                    }
+                    if(!noFindTurn){
                     control.editarTurno(paci);
                     JOptionPane.showMessageDialog(null, "Su turno ha sido modificado", "Turno Modificado", JOptionPane.INFORMATION_MESSAGE);
+                    }else
+                    JOptionPane.showMessageDialog(null, "Su turno fue creado con fecha antigua, intente otro turno", "TURNO OCUPADO", JOptionPane.INFORMATION_MESSAGE);
                 }
             }catch (ParseException ex) {
                 Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);

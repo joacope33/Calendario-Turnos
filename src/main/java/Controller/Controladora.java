@@ -72,4 +72,9 @@ public class Controladora {
     public Paciente findTurno(int id){
         return controlPersis.findTurno(id);
     }
+    public List<Paciente> traerPacientes(){
+        List<Paciente> listaPaciente= controlPersis.traerPacientes();
+        
+        return listaPaciente;
+    }
 }   

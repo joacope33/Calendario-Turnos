@@ -1,0 +1,35 @@
+[33mcommit 276f5e337e27b1b08e5675022302e29aa33b5a8b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Sun Oct 29 16:29:40 2023 -0300
+
+    Se agrega imagen, se agrega evento de teclado que no permita agregar letras a los campos DNI, N° celular y hora de turno
+
+[33mcommit fda67ad38b4b319f46750ee4bff4a94449b2ddfd[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Wed Oct 25 21:46:36 2023 -0300
+
+    Se agrega el patron de MVC al documento, faltando acomodar detalles de algoritmos
+
+[33mcommit a7e65cecb77b107bfc9043c795b077e256faa36f[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Mon Oct 23 01:53:21 2023 -0300
+
+    Se agrega restriccion anidada a la persistencia para las tablas fecha y Hora. Asi desde la DB no se podra repetir turno
+
+[33mcommit 0bc1c934d0900b195eedbd6d5e51c3fc7ce66367[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Mon Oct 23 01:38:39 2023 -0300
+
+    Se agrega singleton a las clases, se agregaa las view y la controladora de persistencia
+
+[33mcommit b24162e88e80e4c2ab962965e27e7d7b7411f33a[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Mon Oct 9 21:46:01 2023 -0300
+
+    Se modifica txtContrasenia, iniciando valor en null o vacio
+
+[33mcommit e4a71fe62ae20628f77cf62e0e27da0ba209c61f[m
+Author: Joaquin Pereyra <pereryra30@gmail.com>
+Date:   Mon Oct 9 19:47:50 2023 -0300
+
+    Cummit inicial, login front end y back end con persistencia jpa en funcionamiento
