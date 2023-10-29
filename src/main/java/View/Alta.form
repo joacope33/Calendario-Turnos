@@ -220,8 +220,15 @@
         <Component class="javax.swing.JTextField" name="txtNombreYApellido">
         </Component>
         <Component class="javax.swing.JTextField" name="txtObraSocial">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtObraSocialActionPerformed"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="txtTurno">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTurnoKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTurnoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAlta">
           <Properties>
@@ -247,6 +254,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNCelularActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNCelularKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtDni">
@@ -257,6 +265,8 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDniActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDniKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDniKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtHora">
@@ -272,6 +282,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHoraActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoraKeyTyped"/>
           </Events>
         </Component>
       </SubComponents>

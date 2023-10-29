@@ -6,6 +6,9 @@ package View;
 
 import java.awt.BorderLayout;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
@@ -23,6 +26,8 @@ public class GestionDeTurnos extends javax.swing.JFrame {
         initContent();
         initModificar();
         setDate();
+        setIconImage(new ImageIcon(getClass().getResource("/icons/ICONODE MEDICINA.png")).getImage());
+       
     }
     public void initContent(){
           setJpanel(new Alta());
@@ -47,11 +52,8 @@ public class GestionDeTurnos extends javax.swing.JFrame {
     }
         private void setDate(){
         LocalDate now= LocalDate.now();
-        int year = now.getYear();
-        int day =now.getDayOfMonth();
-        int month = now.getMonthValue();
-        String meses[]= {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Novimebre","Diciembre"};
-        dateText.setText("Hoy es "+day+" de "+meses[month-1]+" de "+year);
+        Locale spanishLocale = new Locale("es","ES");
+        dateText.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es' EEEE dd 'de' MMMM 'del año' yyyy", spanishLocale)));
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,11 +69,15 @@ public class GestionDeTurnos extends javax.swing.JFrame {
         BtnAlta = new javax.swing.JButton();
         btnEditarEliminar = new javax.swing.JButton();
         btnIcon2 = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         FrontalGestiTurn = new javax.swing.JPanel();
         dateText = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("GESTION DE TURNOS");
+        setIconImage(getIconImage());
+        setIconImages(null);
         setMinimumSize(new java.awt.Dimension(1000, 657));
 
         panelGestTurno.setMinimumSize(new java.awt.Dimension(1000, 800));
@@ -110,6 +116,15 @@ public class GestionDeTurnos extends javax.swing.JFrame {
             }
         });
 
+        btnHistorial.setBackground(new java.awt.Color(0, 179, 184));
+        btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorial.setText("HISTORIAL");
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout lateralGestiTurnLayout = new javax.swing.GroupLayout(lateralGestiTurn);
         lateralGestiTurn.setLayout(lateralGestiTurnLayout);
         lateralGestiTurnLayout.setHorizontalGroup(
@@ -118,30 +133,31 @@ public class GestionDeTurnos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(lateralGestiTurnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(lateralGestiTurnLayout.createSequentialGroup()
-                        .addGroup(lateralGestiTurnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEditarEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(68, 68, 68))
-                    .addGroup(lateralGestiTurnLayout.createSequentialGroup()
-                        .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(BtnAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHistorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         lateralGestiTurnLayout.setVerticalGroup(
             lateralGestiTurnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lateralGestiTurnLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BtnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditarEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(127, 127, 127))
         );
 
         FrontalGestiTurn.setBackground(new java.awt.Color(0, 153, 153));
 
         dateText.setBackground(new java.awt.Color(255, 255, 255));
-        dateText.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        dateText.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         dateText.setForeground(new java.awt.Color(255, 255, 255));
         dateText.setText("Hoy es {dayname} {day} de  {month} de {year}");
 
@@ -149,17 +165,17 @@ public class GestionDeTurnos extends javax.swing.JFrame {
         FrontalGestiTurn.setLayout(FrontalGestiTurnLayout);
         FrontalGestiTurnLayout.setHorizontalGroup(
             FrontalGestiTurnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrontalGestiTurnLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(dateText, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
-                .addGap(105, 105, 105))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrontalGestiTurnLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         FrontalGestiTurnLayout.setVerticalGroup(
             FrontalGestiTurnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrontalGestiTurnLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(dateText, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(104, 104, 104))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrontalGestiTurnLayout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addComponent(dateText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
@@ -209,9 +225,7 @@ public class GestionDeTurnos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelGestTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelGestTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 1017, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,6 +246,10 @@ public class GestionDeTurnos extends javax.swing.JFrame {
     private void btnIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIcon2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIcon2ActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+            setJpanel(new Historial());
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +290,7 @@ public class GestionDeTurnos extends javax.swing.JFrame {
     private javax.swing.JButton BtnAlta;
     private javax.swing.JPanel FrontalGestiTurn;
     private javax.swing.JButton btnEditarEliminar;
+    private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnIcon2;
     private static javax.swing.JPanel content;
     private javax.swing.JLabel dateText;

@@ -50,10 +50,6 @@ public class Alta extends javax.swing.JPanel {
         }
         btnAlta.setText("Modificar");
         btnLimpiar.setVisible(false);
-        txtNombreYApellido.setEditable(false);
-        txtDni.setEditable(false);
-        txtNCelular.setEditable(false);
-        txtObraSocial.setEditable(false);
         
  
     }
@@ -116,6 +112,21 @@ public class Alta extends javax.swing.JPanel {
         jLabel6.setText("Hora de Turno:");
         jLabel6.setEnabled(false);
 
+        txtObraSocial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObraSocialActionPerformed(evt);
+            }
+        });
+
+        txtTurno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTurnoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTurnoKeyTyped(evt);
+            }
+        });
+
         btnAlta.setText("DAR ALTA");
         btnAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,11 +147,24 @@ public class Alta extends javax.swing.JPanel {
                 txtNCelularActionPerformed(evt);
             }
         });
+        txtNCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNCelularKeyTyped(evt);
+            }
+        });
 
         txtDni.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDniActionPerformed(evt);
+            }
+        });
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDniKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
             }
         });
 
@@ -151,6 +175,11 @@ public class Alta extends javax.swing.JPanel {
         txtHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHoraActionPerformed(evt);
+            }
+        });
+        txtHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHoraKeyTyped(evt);
             }
         });
 
@@ -269,32 +298,34 @@ public class Alta extends javax.swing.JPanel {
             paci.setNumeroCelular((long) txtNCelular.getValue());
             paci.setObraSocial(txtObraSocial.getText());
             Date turno = txtTurno.getDate();
+            //define si la fecha esta en el pasado muestra un cartel
             String turnito = formatoFecha.format(turno);
-           Date date = Date.from(Instant.now());
-           String fechaHoy = formatoFecha.format(date);
+            Date date = Date.from(Instant.now());
+            String fechaHoy = formatoFecha.format(date);
             int decision = turnito.compareTo(fechaHoy);
             if (decision >= 0) {
-
-                try {
-                    Date fecha  = formatoHora.parse(txtHora.getText());
-                    Time hora = new Time(fecha.getTime());
-                     paci.setHora((hora));
-                     paci.setTurno((Date)formatoFecha.parse(turnito));
-                     if(!isEdition){
-                        control.crearTurno(paci);    
-                        JOptionPane.showMessageDialog(null,"Su turno ha sido Creado con Exito.","Turno Creado",JOptionPane.INFORMATION_MESSAGE);
-                     } else{
-                        control.editarTurno(paci);
-                        JOptionPane.showMessageDialog(null,"Su turno ha sido modificado","Turno Modificado",JOptionPane.INFORMATION_MESSAGE);
-                     }
-                } catch (ParseException ex) {
-                    Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
             } else {
-                JOptionPane.showMessageDialog(null,"Fecha en el pasado seleccione otra","FECHA EN EL PASADO",JOptionPane.INFORMATION_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Fecha en el pasado seleccione otra", "FECHA EN EL PASADO", JOptionPane.INFORMATION_MESSAGE);
             }
+            try {
+                Date fecha = formatoHora.parse(txtHora.getText());
+                Time hora = new Time(fecha.getTime());
+                paci.setHora((hora));
+                paci.setTurno((Date) formatoFecha.parse(turnito));
+                if (!isEdition) {
+                    control.crearTurno(paci);
+                    JOptionPane.showMessageDialog(null, "Su turno ha sido Creado con Exito.", "Turno Creado", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    control.editarTurno(paci);
+                    JOptionPane.showMessageDialog(null, "Su turno ha sido modificado", "Turno Modificado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }catch (ParseException ex) {
+                Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //*exception SQLException is never thrown in body of corresponding try
+            
+
+
         }
          
         
@@ -310,7 +341,7 @@ public class Alta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtNCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNCelularActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNCelularActionPerformed
 
     private void txtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniActionPerformed
@@ -318,8 +349,51 @@ public class Alta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDniActionPerformed
 
     private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_txtHoraActionPerformed
+
+    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+        // TODO add your handling code here:
+         char a = evt.getKeyChar();
+         if(Character.isLetter(a)){ 
+             evt.consume();
+         }
+        
+    }//GEN-LAST:event_txtDniKeyPressed
+
+    private void txtTurnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTurnoKeyPressed
+
+    }//GEN-LAST:event_txtTurnoKeyPressed
+
+    private void txtObraSocialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObraSocialActionPerformed
+
+    }//GEN-LAST:event_txtObraSocialActionPerformed
+
+    private void txtNCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNCelularKeyTyped
+         char a = evt.getKeyChar();
+         if(Character.isLetter(a)){ 
+             evt.consume();
+         } 
+    }//GEN-LAST:event_txtNCelularKeyTyped
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+          char a = evt.getKeyChar();
+         if(Character.isLetter(a)){ 
+             evt.consume();
+         }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void txtTurnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTurnoKeyTyped
+
+
+    }//GEN-LAST:event_txtTurnoKeyTyped
+    
+    private void txtHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraKeyTyped
+         char a = evt.getKeyChar();
+         if(Character.isLetter(a)){ 
+             evt.consume();
+         }
+    }//GEN-LAST:event_txtHoraKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

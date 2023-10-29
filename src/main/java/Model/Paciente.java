@@ -15,9 +15,7 @@ import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "paciente", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"turno", "Hora"})
-})
+
 public class Paciente implements Serializable {
 
     @Id
@@ -27,9 +25,7 @@ public class Paciente implements Serializable {
     private String nombre;
     private String  obraSocial;
     private long numeroCelular;
-    @Column(name = "turno")
     private Date turno;
-    @Column(name = "hora")
     private Time hora; 
 
     public Time getHora() {

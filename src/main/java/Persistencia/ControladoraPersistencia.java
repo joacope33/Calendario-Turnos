@@ -57,6 +57,12 @@ public class ControladoraPersistencia {
             pacJpa.edit(paci);
         }catch(Exception e){
             System.out.println(e);
+            if(e.equals("1062")){
+                System.out.println("Turnito duplicado pa");
+        }
+
+        
+            
         }
     }
     public Paciente findTurno(int id){

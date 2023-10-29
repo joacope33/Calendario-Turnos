@@ -1,6 +1,6 @@
-com.mycompany.calendario.login
-com.mycompany.calendario.login.exceptions
-com.mycompany.calendario.login.IGU
-com.mycompany.calendario.login.Logica
-com.mycompany.calendario.login.Persistencia
-com.mycompany.calendario.login.Persistencia.exceptions
+Controller
+main
+Model
+Persistencia
+PërsistenciaExcepciones
+View

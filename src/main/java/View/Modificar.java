@@ -7,11 +7,13 @@ package View;
 import Model.Paciente;
 import Persistencia.ControladoraPersistencia;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+
 
 /**
  *
@@ -36,14 +38,16 @@ public class Modificar extends javax.swing.JPanel {
     private void setTableSort(){
         control = ControladoraPersistencia.getInstancia();
         DefaultTableModel dtTable=new DefaultTableModel();
-        String [] title= new String[]{"ID","NOMBRE","DNI","TELEFONO","OBRA SOCIAL","Dia del turno","Horario"};
+        String [] title= new String[]{"ID:","Nombre:","DNI","Telefono:","Obra social:","Dia del turno","Horario"};
         List<Paciente> listaPaciente = control.traerPacientes();
         int i=0;
         Object personaa[][] = new Object[listaPaciente.size()][7];
         SimpleDateFormat formatoDia= new SimpleDateFormat("dd-MM-yyyy");
         SimpleDateFormat formatoHora= new SimpleDateFormat("HH:mm");
+        Date fechahoy= new Date();
         
         for(Paciente a: listaPaciente){
+            if(fechahoy.compareTo(a.getTurno())<= 0){
             personaa[i][0]=a.getId();
             personaa[i][1]=a.getNombre();
             personaa[i][2]=a.getDNI();
@@ -52,6 +56,7 @@ public class Modificar extends javax.swing.JPanel {
             personaa[i][5]= formatoDia.format(a.getTurno());
             personaa[i][6]= formatoHora.format(a.getHora());
             i++;
+            }
             
         }
             dtTable.setDataVector(personaa, title);
@@ -75,8 +80,9 @@ public class Modificar extends javax.swing.JPanel {
         btnBuscar = new javax.swing.JButton();
         dateText1 = new javax.swing.JLabel();
         fechaAModificar = new com.toedter.calendar.JDateChooser();
-        btnDelet = new javax.swing.JButton();
+        btnAllTurnos = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
+        btnDelet = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1003, 604));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -100,7 +106,7 @@ public class Modificar extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Nombre:", "DNI:", "Telefono:", "Obra Social:"
+                "ID:","Nombre:", "DNI:", "Telefono:", "Obra Social:", "Dia del turno","Horario"
             }
         ));
         tablaDeUsuarios.addInputMethodListener(new java.awt.event.InputMethodListener() {
@@ -123,11 +129,21 @@ public class Modificar extends javax.swing.JPanel {
 
         dateText1.setBackground(new java.awt.Color(255, 255, 255));
         dateText1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        dateText1.setForeground(new java.awt.Color(255, 255, 255));
         dateText1.setText("Filtro:");
         dateText1.setFocusable(false);
 
         fechaAModificar.setDateFormatString("dd-MMM-yyyy");
+
+        btnAllTurnos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAllTurnos.setText("TODOS");
+        btnAllTurnos.setMaximumSize(new java.awt.Dimension(78, 38));
+        btnAllTurnos.setMinimumSize(new java.awt.Dimension(78, 38));
+        btnAllTurnos.setPreferredSize(new java.awt.Dimension(78, 38));
+        btnAllTurnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAllTurnosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tableroDeModificaiconLayout = new javax.swing.GroupLayout(tableroDeModificaicon);
         tableroDeModificaicon.setLayout(tableroDeModificaiconLayout);
@@ -138,9 +154,11 @@ public class Modificar extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tableroDeModificaiconLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(fechaAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar)
-                        .addGap(120, 120, 120)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAllTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
                         .addComponent(dateText1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,15 +171,17 @@ public class Modificar extends javax.swing.JPanel {
             tableroDeModificaiconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableroDeModificaiconLayout.createSequentialGroup()
                 .addGroup(tableroDeModificaiconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tableroDeModificaiconLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(fechaAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableroDeModificaiconLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(tableroDeModificaiconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBuscar)
                             .addComponent(txtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateText1))))
+                            .addComponent(dateText1)))
+                    .addGroup(tableroDeModificaiconLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(tableroDeModificaiconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fechaAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAllTurnos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -190,14 +210,6 @@ public class Modificar extends javax.swing.JPanel {
 
         add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 765, -1));
 
-        btnDelet.setText("Eliminar");
-        btnDelet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletActionPerformed(evt);
-            }
-        });
-        add(btnDelet, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, 103, 38));
-
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +217,14 @@ public class Modificar extends javax.swing.JPanel {
             }
         });
         add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 103, 38));
+
+        btnDelet.setText("Eliminar");
+        btnDelet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletActionPerformed(evt);
+            }
+        });
+        add(btnDelet, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 560, 103, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaDeUsuariosInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tablaDeUsuariosInputMethodTextChanged
@@ -227,40 +247,43 @@ public class Modificar extends javax.swing.JPanel {
         filtrarFecha();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnDeletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletActionPerformed
-        
-        DefaultTableModel model = (DefaultTableModel) tablaDeUsuarios.getModel();
-        
-        for (int i : tablaDeUsuarios.getSelectedRows()){
-            try{
-               int userId= (int) tablaDeUsuarios.getValueAt(i, 0); 
-                control.eliminarTurno(userId);
-                model.removeRow(i);
-            }catch (Exception e){
-                
-                
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-
-        }
-    }//GEN-LAST:event_btnDeletActionPerformed
+    private void btnAllTurnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllTurnosActionPerformed
+        setTableSort();
+    }//GEN-LAST:event_btnAllTurnosActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         for (int i : tablaDeUsuarios.getSelectedRows()) {
             if (tablaDeUsuarios.getSelectedRow() > -1) {
                 int userId = (int) tablaDeUsuarios.getValueAt(i, 0);
                 Paciente paci = control.findTurno(userId);
-                
-              try{  
-                GestionDeTurnos.setJpanel(new Alta(paci));
-              }catch (Exception e){
-                  JOptionPane.showMessageDialog(null, e.getMessage());
-              }
+
+                try{
+                    GestionDeTurnos.setJpanel(new Alta(paci));
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
             } else {
-               JOptionPane.showMessageDialog(null, "Seleccione una columna");
+                JOptionPane.showMessageDialog(null, "Seleccione una columna");
             }
         }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletActionPerformed
+
+        DefaultTableModel model = (DefaultTableModel) tablaDeUsuarios.getModel();
+
+        for (int i : tablaDeUsuarios.getSelectedRows()){
+            try{
+                int userId= (int) tablaDeUsuarios.getValueAt(i, 0);
+                control.eliminarTurno(userId);
+                model.removeRow(i);
+            }catch (Exception e){
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+
+        }
+    }//GEN-LAST:event_btnDeletActionPerformed
     private void filtrarTexto(){
         try{
             sorter.setRowFilter(RowFilter.regexFilter("(?i)"+txtFilter.getText()));
@@ -281,6 +304,7 @@ public class Modificar extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Modificar;
+    private javax.swing.JButton btnAllTurnos;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDelet;
     private javax.swing.JButton btnEdit;
