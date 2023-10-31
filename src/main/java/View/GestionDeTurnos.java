@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package View;
 
 import java.awt.BorderLayout;
@@ -12,49 +8,50 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
-/**
- *
- * @author joaco
- */
 public class GestionDeTurnos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GestionDeTurnos
-     */
+    //constructor que inicia los metodos necesarios para ejecuitar el programa
     public GestionDeTurnos() {
         initComponents();
         initContent();
         initModificar();
         setDate();
         setIconImage(new ImageIcon(getClass().getResource("/icons/ICONODE MEDICINA.png")).getImage());
-       
+
+    }//metodo para iniciar el contenido de la aplicacion
+
+    public void initContent() {
+        //inicia el programa con un alta.
+        setJpanel(new Alta());
     }
-    public void initContent(){
-          setJpanel(new Alta());
-    }
-        public void initModificar(){
-        Modificar mod= new Modificar();
-        mod.setSize(750,600);
+
+    public void initModificar() {
+        Modificar mod = new Modificar();
+        mod.setSize(750, 600);
         mod.setLocation(0, 0);
-        
         content.removeAll();
-        content.add(mod,BorderLayout.CENTER);
+        content.add(mod, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }
-       public static void setJpanel(JPanel panel){
-        panel.setSize(750,600);
+    //metodo para modificar el Jpanel de gestion de turnos, en este podes colocar las distintas view: alta, modificar,historia.
+
+    public static void setJpanel(JPanel panel) {
+        panel.setSize(750, 600);
         panel.setLocation(0, 0);
         content.removeAll();
-        content.add(panel,BorderLayout.CENTER);
+        content.add(panel, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
     }
-        private void setDate(){
-        LocalDate now= LocalDate.now();
-        Locale spanishLocale = new Locale("es","ES");
+    //setea el textfield de fechas de gestion de turnos
+
+    private void setDate() {
+        LocalDate now = LocalDate.now();
+        Locale spanishLocale = new Locale("es", "ES");
         dateText.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es' EEEE dd 'de' MMMM 'del año' yyyy", spanishLocale)));
-}
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -236,11 +233,11 @@ public class GestionDeTurnos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAltaActionPerformed
-            setJpanel(new Alta());
+        setJpanel(new Alta());
     }//GEN-LAST:event_BtnAltaActionPerformed
 
     private void btnEditarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEliminarActionPerformed
-            setJpanel(new Modificar());
+        setJpanel(new Modificar());
     }//GEN-LAST:event_btnEditarEliminarActionPerformed
 
     private void btnIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIcon2ActionPerformed
@@ -248,12 +245,9 @@ public class GestionDeTurnos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIcon2ActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-            setJpanel(new Historial());
+        setJpanel(new Historial());
     }//GEN-LAST:event_btnHistorialActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

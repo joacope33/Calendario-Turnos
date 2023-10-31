@@ -1,30 +1,29 @@
-
 package View;
-
 
 import Controller.Controladora;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class LoginVentana extends javax.swing.JFrame {
-        Controladora control ;
-        
-        private static LoginVentana instancia;
-    private  LoginVentana() {
+
+    Controladora control;
+
+    private static LoginVentana instancia;
+
+    private LoginVentana() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/icons/ICONODE MEDICINA.png")).getImage());
         control = new Controladora();
         txtContrasenia.setText("");
     }
-        public static LoginVentana getInstancia(){
-            if (instancia==null){
-                instancia = new LoginVentana();
 
-            } 
-              return instancia;  
+    public static LoginVentana getInstancia() {
+        if (instancia == null) {
+            instancia = new LoginVentana();
+
         }
-
-
+        return instancia;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,8 +38,6 @@ public class LoginVentana extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         btnLimpiar = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtMensaje = new javax.swing.JTextArea();
         txtContrasenia = new javax.swing.JPasswordField();
         btnIcon = new javax.swing.JButton();
 
@@ -98,12 +95,6 @@ public class LoginVentana extends javax.swing.JFrame {
             }
         });
 
-        txtMensaje.setEditable(false);
-        txtMensaje.setBackground(new java.awt.Color(204, 204, 204));
-        txtMensaje.setColumns(20);
-        txtMensaje.setRows(5);
-        jScrollPane1.setViewportView(txtMensaje);
-
         txtContrasenia.setBackground(new java.awt.Color(204, 204, 204));
         txtContrasenia.setText("jPasswordField1");
         txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
@@ -137,8 +128,7 @@ public class LoginVentana extends javax.swing.JFrame {
                         .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator1)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                                 .addComponent(jSeparator2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,9 +156,9 @@ public class LoginVentana extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLoginLayout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(LblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                    .addComponent(LblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(78, 78, 78)
                 .addGroup(PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -185,9 +175,7 @@ public class LoginVentana extends javax.swing.JFrame {
                     .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(194, 194, 194))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,10 +195,9 @@ public class LoginVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-      
+
         txtUsuario.setText("");
         txtContrasenia.setText("");
-        txtMensaje.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -220,20 +207,18 @@ public class LoginVentana extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String usuario = txtUsuario.getText();
         String contrasenia = txtContrasenia.getText();
-        String mensaje = control.validarUsuario(usuario,contrasenia);
-        
-        txtMensaje.setText(mensaje);
-        if (mensaje.equals("Usuario y contrasenia correctos. Bienvenidos/as!")){
-           try{
-               GestionDeTurnos gestionDeTurnos = new GestionDeTurnos();
-               gestionDeTurnos.setVisible(true);
-               gestionDeTurnos.setLocationRelativeTo(null);
-               dispose();
-           }catch(Exception e){
-               JOptionPane.showMessageDialog(null, e.getMessage());
-           }
-        }
-        else{
+        String mensaje = control.validarUsuario(usuario, contrasenia);
+
+        if (mensaje.equals("Usuario y contrasenia correctos. Bienvenidos/as!")) {
+            try {
+                GestionDeTurnos gestionDeTurnos = new GestionDeTurnos();
+                gestionDeTurnos.setVisible(true);
+                gestionDeTurnos.setLocationRelativeTo(null);
+                dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Ingrese nuevamente");
         }
 
@@ -251,7 +236,6 @@ public class LoginVentana extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIconActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblTitulo;
@@ -261,11 +245,9 @@ public class LoginVentana extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPasswordField txtContrasenia;
-    private javax.swing.JTextArea txtMensaje;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

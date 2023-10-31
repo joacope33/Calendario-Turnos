@@ -4,13 +4,10 @@ package Model;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 
@@ -36,11 +33,6 @@ public class Paciente implements Serializable {
         this.hora = hora;
     }
 
-
-
-
-    
-
     public Date getTurno() {
         return turno;
     }
@@ -60,16 +52,13 @@ public class Paciente implements Serializable {
         this.id = id;
     }
 
-
-
-
-
-
-    public Paciente(String nombre, long DNI, String obraSocial, long numeroCelular) {
-        this.nombre = nombre;
+    public Paciente(long DNI, String nombre, String obraSocial, long numeroCelular, Date turno, Time hora) {
         this.DNI = DNI;
+        this.nombre = nombre;
         this.obraSocial = obraSocial;
         this.numeroCelular = numeroCelular;
+        this.turno = turno;
+        this.hora = hora;
     }
 
     public String getNombre() {
